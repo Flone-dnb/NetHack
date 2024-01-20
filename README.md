@@ -1,6 +1,9 @@
 # Fork info
 
-- Use cmake for building (https://github.com/NetHack/NetHack/pull/662).
+- Internal changes:
+    - Use cmake for building (https://github.com/NetHack/NetHack/pull/662).
+- UI:
+    - Slightly change color of dungeon walls.
 
 # Original description
 
