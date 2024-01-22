@@ -7,14 +7,18 @@
 
 # How to build
 
+> Don't forget to pull submodules before building.
+
 Windows-specific prerequisites:
 - expecting MSVC compiler so make sure `cl.exe`, `link.exe` and `vcvarsall.bat` are in the PATH
+
+To build:
 
 ```
 mkdir build && cd build
 cmake -G Ninja ..
 ninja
-cmake --install .
+cmake --install . (optional)
 ```
 
 # Original description
