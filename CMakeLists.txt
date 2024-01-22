@@ -58,11 +58,9 @@ set(LUA_BUILD_COMMAND make)
 set(LUA_LIB_NAME liblua.a)
 if (WIN32)
 set(LUA_BUILD_COMMAND
-    cd src &&
     vcvarsall.bat x86_amd64 && cl.exe /MD /O2 /c /DLUA_BUILD_AS_DLL *.c &&
-    ren lua.obj lua.o && ren luac.obj luac.o &&
-    link.exe /DLL /IMPLIB:lua.lib /OUT:lua.dll *.obj &&
-    cd ..)
+    ren lua.obj lua.o && ren onelua.obj onelua.o &&
+    link.exe /DLL /IMPLIB:lua.lib /OUT:lua.dll *.obj)
 set(LUA_LIB_NAME lua.lib)
 endif()
 
