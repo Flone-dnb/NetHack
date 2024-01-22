@@ -14,7 +14,11 @@
 #include <stdlib.h>
 #include <sys\stat.h>
 #include <errno.h>
+
+#define WIN32_LEAN_AND_MEAN
+#define boolean dontcare // to undef `boolean` typedef that some Windows header defines
 #include <ShlObj.h>
+#undef boolean
 
 #if !defined(SAFEPROCS)
 #error You must #define SAFEPROCS to build windmain.c

@@ -20,6 +20,9 @@ target_include_directories(dlb PRIVATE ${NH_INC} ${NH_INC_GEN} ${NH_UTIL_GEN}
 add_executable(recover recover.c)
 target_include_directories(recover PRIVATE ${NH_INC} ${NH_INC_GEN}
                                            ${NH_UTIL_GEN} ${LUA_INCLUDE})
+if (WIN32)
+target_include_directories(recover PRIVATE ${NH_SYS}/windows)
+endif()
 
 add_custom_command(
   DEPENDS makedefs

@@ -5,6 +5,18 @@
 - UI:
     - Slightly change color of dungeon walls.
 
+# How to build
+
+Windows-specific prerequisites:
+- expecting MSVC compiler so make sure `cl.exe`, `link.exe` and `vcvarsall.bat` are in the PATH
+
+```
+mkdir build && cd build
+cmake -G Ninja ..
+ninja
+cmake --install .
+```
+
 # Original description
 
          NetHack 3.7.0 work-in-progress -- General information

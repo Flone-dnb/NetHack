@@ -128,10 +128,14 @@ add_custom_command(
 # Defensive dependencies for when we also build NetHack with make/make install.
 list(TRANSFORM DATDLB PREPEND ${NH_DAT_GEN}/ OUTPUT_VARIABLE NH_DAT_GEN_DATDLB)
 
+set(SET_LOCALE_COMMAND LC_ALL=C)
+if (WIN32)
+set(SET_LOCALE_COMMAND )
+endif()
 add_custom_command(
   DEPENDS dlb ${NH_DAT_GEN_DATDLB}
   OUTPUT nhdat
-  COMMAND LC_ALL=C $<TARGET_FILE:dlb> ARGS cf nhdat ${DATDLB})
+  COMMAND ${SET_LOCALE_COMMAND} $<TARGET_FILE:dlb> ARGS cf nhdat ${DATDLB})
 
 set(ALL_DAT_GEN nhdat perm record logfile xlogfile sysconf)
 list(TRANSFORM ALL_DAT_GEN PREPEND ${NH_DAT_GEN}/)

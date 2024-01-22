@@ -42,9 +42,10 @@
 #endif
 
 #define WIN32_LEAN_AND_MEAN
-
+#define boolean dontcare // to undef `boolean` typedef that some Windows header defines
 #include <windows.h>
 #include <commctrl.h>
+#undef boolean
 
 #if defined(_MSC_VER)
 #pragma pack()
