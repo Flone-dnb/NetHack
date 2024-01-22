@@ -2872,7 +2872,7 @@ reset_glyphmap(enum glyphmap_change_triggers trigger)
                use the same symbol */
             } else if (cmap == S_litcorr
                        && sym == gs.showsyms[S_corr + SYM_OFF_P]) {
-                color = CLR_WHITE;
+                color = CLR_LIT_CORRIDOR;
             /* likewise for corridor and engraving-in-corridor */
             } else if (cmap == S_engrcorr
                        && (sym == gs.showsyms[S_corr + SYM_OFF_P]

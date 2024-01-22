@@ -99,7 +99,7 @@
     PCHAR2(10, '|',  S_tlwall, "tlwall", "wall", CLR_GRAY)
     PCHAR2(11, '|',  S_trwall, "trwall", "wall", CLR_GRAY)
     /* start cmap A                                                      */
-    PCHAR2(12, '.',  S_ndoor,  "no door", "doorway", CLR_GRAY)
+    PCHAR2(12, '.',  S_ndoor,  "no door", "doorway", CLR_YELLOW)
     PCHAR2(13, '-',  S_vodoor, "vertical open door", "open door", CLR_BROWN)
     PCHAR2(14, '|',  S_hodoor, "horizontal open door", "open door", CLR_BROWN)
     PCHAR2(15, '+',  S_vcdoor, "vertical closed door",
@@ -108,12 +108,12 @@
                                "closed door", CLR_BROWN)
     PCHAR( 17, '#',  S_bars,   "iron bars", HI_METAL)
     PCHAR( 18, '#',  S_tree,   "tree", CLR_GREEN)
-    PCHAR( 19, '.',  S_room,   "floor of a room", CLR_GRAY)
+    PCHAR( 19, '.',  S_room,   "floor of a room", CLR_YELLOW)
     PCHAR( 20, '.',  S_darkroom, "dark part of a room", CLR_BLACK)
     PCHAR2(21, '`',  S_engroom, "engraving in a room", "engraving",
                                 CLR_BRIGHT_BLUE)
-    PCHAR2(22, '#',  S_corr,   "dark corridor", "corridor", CLR_GRAY)
-    PCHAR( 23, '#',  S_litcorr, "lit corridor", CLR_GRAY)
+    PCHAR2(22, '#',  S_corr,   "dark corridor", "corridor", CLR_BLACK)
+    PCHAR( 23, '#',  S_litcorr, "lit corridor", CLR_YELLOW)
     PCHAR2(24, '#',  S_engrcorr, "engraving in a corridor", "engraving",
                                  CLR_BRIGHT_BLUE)
     PCHAR2(25, '<',  S_upstair, "up stairs", "staircase up", CLR_GRAY)
@@ -125,7 +125,7 @@
     PCHAR( 31, '<',  S_brupladder, "branch ladder up", CLR_YELLOW)
     PCHAR( 32, '>',  S_brdnladder, "branch ladder down", CLR_YELLOW)
     /* end cmap A */
-    PCHAR( 33, '_',  S_altar,  "altar", CLR_GRAY)
+    PCHAR( 33, '_',  S_altar,  "altar", CLR_RED)
     /* start cmap B */
     PCHAR( 34, '|',  S_grave,  "grave", CLR_WHITE)
     PCHAR2(35, '\\', S_throne, "throne", "opulent throne", HI_GOLD)
