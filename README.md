@@ -4,6 +4,8 @@
     - Use cmake for building (https://github.com/NetHack/NetHack/pull/662).
 - UI:
     - Change color of some objects.
+- Gameplay:
+    - Pets no longer pick up items in shops.
 
 # How to build
 

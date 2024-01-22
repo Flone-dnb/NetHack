@@ -422,7 +422,8 @@ dog_invent(struct monst *mtmp, struct edog *edog, int udist)
 
             carryamt = can_carry(mtmp, obj);
             if (carryamt > 0 && !obj->cursed
-                && could_reach_item(mtmp, obj->ox, obj->oy)) {
+                && could_reach_item(mtmp, obj->ox, obj->oy)
+                && shop_keeper(inside_shop(obj->ox, obj->oy)) == NULL) { // don't pick up items in shops
                 if (rn2(20) < edog->apport + 3) {
                     if (rn2(udist) || !rn2(edog->apport)) {
                         otmp = obj;
