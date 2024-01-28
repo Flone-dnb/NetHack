@@ -50,7 +50,8 @@ file(
   air.lua
   earth.lua
   fire.lua
-  water.lua)
+  water.lua
+  tut-?.lua)
 
 file(
   GLOB QUEST_LEVS
