@@ -222,26 +222,45 @@ set(NETHACK_SRC
     "win/tty/topl.c"
     "win/tty/wintty.c")
 
+# Define sources for curses interface.
+set(CURSES_SRC
+    "win/curses/cursmain.c"
+    "win/curses/curswins.c"
+    "win/curses/cursmisc.c"
+    "win/curses/cursdial.c"
+    "win/curses/cursstat.c"
+    "win/curses/cursinit.c"
+    "win/curses/cursmesg.c"
+    "win/curses/cursinvt.c")
+
+# Define macro to use curses graphics.
+add_compile_definitions(CURSES_GRAPHICS)
+
+# Append curses-related sources.
+list(APPEND NETHACK_SRC ${CURSES_SRC})
+
 if (UNIX)
-# Append Unix specific sources.
-set(NETHACK_UNIX_SRC
-    "sys/share/posixregex.c"
-    "sys/share/ioctl.c"
-    "sys/unix/unixunix.c"
-    "sys/unix/unixmain.c"
-    "sys/unix/unixres.c"
-    "sys/share/unixtty.c")
-list(APPEND NETHACK_SRC ${NETHACK_UNIX_SRC})
+    add_compile_definitions(_XOPEN_SOURCE_EXTENDED)
+    # Append Unix specific sources.
+    set(NETHACK_UNIX_SRC
+        "sys/share/posixregex.c"
+        "sys/share/ioctl.c"
+        "sys/unix/unixunix.c"
+        "sys/unix/unixres.c"
+        "sys/share/unixtty.c"
+        "sys/share/tclib.c"
+        "sys/unix/unixmain.c")
+    list(APPEND NETHACK_SRC ${NETHACK_UNIX_SRC})
 elseif (WIN32)
-# Append Windows specific sources.
-add_compile_definitions(WIN32CON SAFEPROCS)
-set(NETHACK_WIN_SRC
-    "sys/share/cppregex.cpp"
-    "win/share/safeproc.c"
-    "sys/windows/windsys.c"
-    "sys/windows/windmain.c"
-    "sys/windows/consoletty.c")
-list(APPEND NETHACK_SRC ${NETHACK_WIN_SRC})
+    add_compile_definitions(WIN32CON SAFEPROCS)
+    # Append Windows specific sources.
+    set(NETHACK_WIN_SRC
+        "sys/share/cppregex.cpp"
+        "win/share/safeproc.c"
+        "sys/windows/windsys.c"
+        "sys/windows/consoletty.c"
+        "sys/windows/windmain.c")
+    list(APPEND NETHACK_SRC ${NETHACK_WIN_SRC})
 endif()
 
 # nethack executable.
@@ -277,8 +296,12 @@ add_dependencies(nethack util dat lua_support)
 
 # add include directories
 target_include_directories(
-  nethack PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${LUA_INCLUDE}
-                 ${NH_INC_GEN} /usr/local/include)
+  nethack PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${LUA_INCLUDE}
+  ${NH_INC_GEN}
+  ${CMAKE_CURRENT_SOURCE_DIR}/win/curses
+  /usr/local/include)
 
 # post build tasks
 if (WIN32)
