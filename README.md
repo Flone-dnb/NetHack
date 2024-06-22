@@ -1,26 +1,28 @@
 # Fork info
 
 - Internal changes:
-    - Use cmake for building (https://github.com/NetHack/NetHack/pull/662).
+    - Use cmake for building (based on https://github.com/NetHack/NetHack/pull/662).
 - UI:
-    - Change color of some objects.
+    - Minor changes to color of some objects.
 - Gameplay:
     - Pets no longer pick up items in shops.
 
 # How to build
 
-> Don't forget to pull submodules before building.
-
 Windows-specific prerequisites:
 - expecting MSVC compiler so make sure `cl.exe`, `link.exe` and `vcvarsall.bat` are in the PATH
 
+Linux prerequisites:
+- cmake, ninja-build, ncurses, readline-devel, ncompress
+
 To build:
 
-```
+```Bash
+git submodule update --init --recursive
 mkdir build && cd build
-cmake -G Ninja ..
-ninja
-cmake --install . (optional)
+cmake -G Ninja .. # on Windows just use `cmake ..` MSVC should be used
+ninja             # on Windows just `cmake --build .`
+cmake --install . # optional
 ```
 
 # Original description

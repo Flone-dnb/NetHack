@@ -109,7 +109,9 @@ set(NETHACK_SRC
     "src/ball.c"
     "src/bones.c"
     "src/botl.c"
+    "src/calendar.c"
     "src/cmd.c"
+    "src/coloratt.c"
     "src/date.c"
     "src/dbridge.c"
     "src/decl.c"
@@ -134,6 +136,8 @@ set(NETHACK_SRC
     "src/extralev.c"
     "src/files.c"
     "src/fountain.c"
+    "src/getpos.c"
+    "src/glyphs.c"
     "src/hack.c"
     "src/hacklib.c"
     "src/insight.c"
@@ -164,6 +168,7 @@ set(NETHACK_SRC
     "src/nhlobj.c"
     "src/nhlsel.c"
     "src/nhlua.c"
+    "src/nhmd4.c"
     "src/o_init.c"
     "src/objects.c"
     "src/objnam.c"
@@ -180,12 +185,14 @@ set(NETHACK_SRC
     "src/read.c"
     "src/rect.c"
     "src/region.c"
+    "src/report.c"
     "src/restore.c"
     "src/rip.c"
     "src/rnd.c"
     "src/role.c"
     "src/rumors.c"
     "src/save.c"
+    "src/selvar.c"
     "src/sfstruct.c"
     "src/shk.c"
     "src/shknam.c"
@@ -193,8 +200,10 @@ set(NETHACK_SRC
     "src/sounds.c"
     "src/sp_lev.c"
     "src/spell.c"
+    "src/stairs.c"
     "src/steal.c"
     "src/steed.c"
+    "src/strutil.c"
     "src/symbols.c"
     "src/sys.c"
     "src/teleport.c"
@@ -202,8 +211,8 @@ set(NETHACK_SRC
     "src/topten.c"
     "src/track.c"
     "src/trap.c"
-    "src/uhitm.c"
     "src/u_init.c"
+    "src/uhitm.c"
     "src/utf8map.c"
     "src/vault.c"
     "src/version.c"
@@ -213,6 +222,7 @@ set(NETHACK_SRC
     "src/wield.c"
     "src/windows.c"
     "src/wizard.c"
+    "src/wizcmds.c"
     "src/worm.c"
     "src/worn.c"
     "src/write.c"
@@ -263,7 +273,7 @@ elseif (WIN32)
     list(APPEND NETHACK_SRC ${NETHACK_WIN_SRC})
 endif()
 
-# nethack executable.
+# nethack executable
 add_executable(nethack ${NETHACK_SRC})
 
 # link ncurses
@@ -281,6 +291,7 @@ if (WIN32)
     target_link_libraries(nethack PDcurses)
 else()
     target_link_libraries(nethack ncurses)
+    target_link_libraries(nethack ncursesw)
 endif()
 
 # link other libs
@@ -297,7 +308,7 @@ add_dependencies(nethack util dat lua_support)
 # add include directories
 target_include_directories(
   nethack PUBLIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${NH_INC}
   ${LUA_INCLUDE}
   ${NH_INC_GEN}
   ${CMAKE_CURRENT_SOURCE_DIR}/win/curses
@@ -317,3 +328,5 @@ add_custom_command(TARGET nethack POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat370 ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat
 )
 endif()
+
+install(TARGETS nethack DESTINATION ${INSTDIR})

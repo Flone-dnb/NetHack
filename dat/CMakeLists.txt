@@ -145,4 +145,5 @@ add_custom_target(dat ALL DEPENDS ${ALL_DAT_GEN} ${ALL_DAT_NOTGEN} ${VARDAT})
 
 install(FILES ${ALL_DAT_GEN} DESTINATION ${INSTDIR})
 install(FILES ${ALL_DAT_NOTGEN} DESTINATION ${INSTDIR}/dat)
+install(FILES symbols DESTINATION ${INSTDIR}) # also copy symbols to the root directory next to the binary
 install(DIRECTORY DESTINATION ${INSTDIR}/save)
