@@ -59,6 +59,7 @@ set(LUA_LIB_NAME liblua.a)
 if (WIN32)
 set(LUA_BUILD_COMMAND
     vcvarsall.bat x86_amd64 && cl.exe /MD /O2 /c /DLUA_BUILD_AS_DLL *.c &&
+    del lua.o 2>null && del onelua.o 2>null &&
     ren lua.obj lua.o && ren onelua.obj onelua.o &&
     link.exe /DLL /IMPLIB:lua.lib /OUT:lua.dll *.obj)
 set(LUA_LIB_NAME lua.lib)
@@ -289,6 +290,7 @@ if (WIN32)
     )
     target_include_directories(PDcurses PUBLIC ${PDCURSES_ROOT_DIR})
     target_link_libraries(nethack PDcurses)
+    target_link_libraries(nethack Dbghelp)
 else()
     target_link_libraries(nethack ncurses)
     target_link_libraries(nethack ncursesw)
@@ -321,7 +323,7 @@ add_custom_command(TARGET nethack POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_SYS}/windows/sysconf.template ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_DAT}/symbols ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E rename ${CMAKE_CURRENT_BINARY_DIR}/symbols ${CMAKE_CURRENT_BINARY_DIR}/symbols.template
-    COMMAND ${CMAKE_COMMAND} -E copy   ${NH_SYS}/windows/.nethackrc.template ${CMAKE_CURRENT_BINARY_DIR}
+    COMMAND ${CMAKE_COMMAND} -E copy   ${NH_SYS}/windows/nethackrc.template ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_DOC}/Guidebook.txt ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy   ${NH_DAT}/opthelp ${CMAKE_CURRENT_BINARY_DIR}
     COMMAND ${CMAKE_COMMAND} -E copy   ${CMAKE_CURRENT_BINARY_DIR}/dat/nhdat370 ${CMAKE_CURRENT_BINARY_DIR}
